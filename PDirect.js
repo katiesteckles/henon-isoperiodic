@@ -9,6 +9,7 @@ function PDirect(par) {
     max = par.maxZ2,
     labels = par.labels,
     square = par.square;
+  const precision = 6;
   var rTouch,
     xOffs,
     yOffs,
@@ -183,7 +184,7 @@ function PDirect(par) {
       var aMax = Xmid + ((width / 2) * DX) / width;
       var bMin = Ymid - ((height / 2) * DX) / width;
       var bMax = Ymid + ((height / 2) * DX) / width;
-      txt.innerHTML = `${period}<br />a=${a.toFixed(8)} b=${b.toFixed(8)}<br />Image shows values of a between ${aMin.toFixed(8)} and ${aMax.toFixed(8)}, and values of b between ${bMin.toFixed(8)} and ${bMax.toFixed(8)}`
+      txt.innerHTML = `${period}<br />a=${a.toFixed(precision)} b=${b.toFixed(precision)}<br />Image shows values of a between ${aMin.toFixed(precision)} and ${aMax.toFixed(precision)}, and values of b between ${bMin.toFixed(precision)} and ${bMax.toFixed(precision)}`
       return;
     }
     Xmid = a;
