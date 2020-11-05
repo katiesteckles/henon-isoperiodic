@@ -20,7 +20,7 @@ function PDirect(par) {
     scale;
   if (!max) max = 4;
 
-  func["HenonJ"] = function (a, b, Xo, Yo) {
+  var henonJ = function (a, b, Xo, Yo) {
     var b2 = (1 - b) * 0.5,
       Xs,
       Ys;
@@ -53,88 +53,7 @@ function PDirect(par) {
     if (n === 64) return maxCol;
     return -n;
   };
-  func["HenonH"] = function (a, b, Xo, Yo) {
-    var b1 = (1 - b) * 0.5,
-      d = b1 * b1 - a,
-      Xs,
-      Ys;
-    if (d < 0) Xs = 0;
-    else if (Xo > 0) Xs = b1 + Math.sqrt(d) + 0.000000001;
-    else Xs = b1 - Math.sqrt(d) + 0.000000001;
-    Ys = Xs;
-    var X = a + Xs * Xs + b * Ys,
-      X2 = X * X,
-      X1,
-      Y = Ys,
-      n = 0;
-    do {
-      X1 = a + X2 + b * Y;
-      Y = X;
-      X = X1;
-      X2 = X * X;
-      n++;
-    } while (X2 < 1000 && n < maxIterations);
-    if (n < maxIterations) return maxCol + 1;
-    Xo = X;
-    Yo = Y;
-    n = -1;
-    do {
-      X1 = a + X * X + b * Y;
-      Y = X;
-      X = X1;
-      n++;
-    } while (Math.abs(X - Xo) + Math.abs(Y - Yo) > 0.00000001 && n < 64);
-    if (n === 64) return maxCol;
-    return -n;
-  };
-  func["Circle"] = function (A, B) {
-    var X = 0.5,
-      Xo,
-      B1 = 25.13 * B,
-      n = 0;
-    do {
-      X = X + A + B1 * X * (X - 0.5) * (X - 1);
-      X -= Math.floor(X);
-      n++;
-    } while (n < maxIterations);
-    Xo = X;
-    n = -1;
-    do {
-      X = X + A + B1 * X * (X - 0.5) * (X - 1);
-      X -= Math.floor(X);
-      n++;
-    } while (Math.abs(X - Xo) > 0.00000001 && n < 64);
-    if (n === 64) return maxCol;
-    return -n;
-  };
-  func["PBiquadH"] = function (A, B, C) {
-    var X,
-      X2 = 0,
-      Xo,
-      n = 0;
-    if (C > 0) {
-      if (A > 0) return maxCol;
-      X = Math.sqrt(-A);
-      X2 = X * X;
-    }
-    do {
-      X2 += A;
-      X = X2 * X2 + B;
-      X2 = X * X;
-      n++;
-    } while (X2 < 1000 && n < maxIterations);
-    if (n < maxIterations) return maxCol + 1;
-    Xo = X;
-    n = -1;
-    do {
-      X2 += A;
-      X = X2 * X2 + B;
-      X2 = X * X;
-      n++;
-    } while (Math.abs(X - Xo) > 0.00000001 && n < 64);
-    if (n === 64) return maxCol;
-    return -n;
-  };
+
   var div = document.getElementById(par.divId);
   var canvas = document.createElement("canvas");
   canvas.addEventListener("mouseup", ev_mouseup, false);
@@ -229,17 +148,17 @@ function PDirect(par) {
   }
 
   function ev_mouseup(ev) {
-    var x, y;
+    var a, b;
     //  if (ev.button != 0) return
     if (ev.layerX || ev.layerY == 0) {
-      x = ev.layerX;
-      y = ev.layerY;
+      a = ev.layerX;
+      b = ev.layerY;
     } else if (ev.offsetX || ev.offsetY == 0) {
-      x = ev.offsetX;
-      y = ev.offsetY;
+      a = ev.offsetX;
+      b = ev.offsetY;
     }
-    x = Xmid + ((x - width / 2) * DX) / width;
-    y = Ymid - ((y - height / 2) * DX) / width;
+    a = Xmid + ((a - width / 2) * DX) / width;
+    b = Ymid - ((b - height / 2) * DX) / width;
     if (ev.ctrlKey) {
       if (ev.shiftKey) DX *= 4;
       else DX *= 2;
@@ -247,13 +166,14 @@ function PDirect(par) {
       if (ev.shiftKey) DX /= 4;
       else DX /= 2;
     } else {
-      var t = func[formula](x, y, par1, par2);
+      // var t = func[formula](a, b, par1, par2);
+      var t = henonJ(a, b, par1, par2);
       var text = (t <= 0) ? "n=" + (-t + 1) : "inf";
-      txt.innerHTML = text
+      txt.innerHTML = `${text} a=${a} b=${b}`
       return;
     }
-    Xmid = x;
-    Ymid = y;
+    Xmid = a;
+    Ymid = b;
     paint();
   }
   function startTouch(evt) {
