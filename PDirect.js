@@ -7,7 +7,7 @@ function PDirect(par) {
     maxIterations = par.maxIt,
     maxCol = par.maxCol,
     max = par.maxZ2,
-    label = par.label,
+    labels = par.labels,
     square = par.square;
   var rTouch,
     xOffs,
@@ -128,13 +128,18 @@ function PDirect(par) {
     ctx.textBaseline = "ideographic";
     ctx.fillStyle = "white";
     var StZ = DX / width;
-    if (label)
-      for (var i = 0; i < label.length; i++)
-        ctx.fillText(
-          label[i][0],
-          width / 2 + (label[i][1] - Xmid) / StZ,
-          height / 2 + (Ymid - label[i][2]) / StZ
-        );
+    if (labels) {
+      for (var label of labels) {
+        var shouldShow = !label.dx || (label.dx < 0 && DX >= Math.abs(label.dx)) || (label.dx > 0 && DX <= label.dx)
+        if (shouldShow) {
+          ctx.fillText(
+              label.label,
+              width / 2 + (label.a - Xmid) / StZ,
+              height / 2 + (Ymid - label.b) / StZ
+          );
+        }
+      }
+    }
     if (square) {
       ctx.strokeStyle = "white";
       var sqr = square[2] / StZ,
