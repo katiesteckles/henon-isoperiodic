@@ -167,8 +167,11 @@ function PDirect(par) {
       else DX /= 2;
     } else {
       var t = henonJ(a, b, par1, par2);
-      var text = (t <= 0) ? "n=" + (-t + 1) : "inf";
-      txt.innerHTML = `${text} a=${a} b=${b}`
+      var period = (t <= 0) ? "n=" + (-t + 1) : "inf";
+      var aMin = Xmid - ((width / 2) * DX) / width;
+      var aMax = Xmid + ((width / 2) * DX) / width;
+
+      txt.innerHTML = `${period} amax ${aMax} amin ${aMin}`
       return;
     }
     Xmid = a;
