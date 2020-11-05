@@ -167,11 +167,12 @@ function PDirect(par) {
       else DX /= 2;
     } else {
       var t = henonJ(a, b, par1, par2);
-      var period = (t <= 0) ? "n=" + (-t + 1) : "inf";
+      var period = (t <= 0) ? "Period: " + (-t + 1) : "inf";
       var aMin = Xmid - ((width / 2) * DX) / width;
       var aMax = Xmid + ((width / 2) * DX) / width;
-
-      txt.innerHTML = `${period} amax ${aMax} amin ${aMin}`
+      var bMin = Ymid - ((height / 2) * DX) / width;
+      var bMax = Ymid + ((height / 2) * DX) / width;
+      txt.innerHTML = `${period} a=${a} b=${b}. Showing values of a between ${aMin} and ${aMax}, and values of b between ${bMin} and ${bMax}`
       return;
     }
     Xmid = a;
