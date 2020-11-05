@@ -116,14 +116,7 @@ function PDirect(par) {
 
     time = new Date().getTime() - time;
     txt.innerHTML =
-      form(Xmid) +
-      "&nbsp; " +
-      form(Ymid) +
-      "&nbsp; " +
-      form(DX) +
-      " &nbsp; " +
-      time +
-      "ms";
+      "Centre point: a=" + form(Xmid) + ", b=" + form(Ymid) + "; zoom factor " + form(DX) + "; Time to render " + time + "ms";
 
     ctx.font = " " + Math.round(0.5 * txt.clientHeight) + "pt sans-serif";
     ctx.textBaseline = "ideographic";
