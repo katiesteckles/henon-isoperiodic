@@ -1,0 +1,88 @@
+
+<!-- saved from url=(0048)https://www.ibiblio.org/e-notes/Chaos/gallas.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+ <title>Structure of the parameter space of the Henon map</title>
+ <style type="text/css">
+   canvas{ position: relative;}
+ </style>
+ <script src="./Structure of the parameter space of the Henon map_files/PDirect.js" type="text/javascript"></script>
+</head>
+<body>
+
+<p></p><center>
+<font color="green" size="+2"><b>Structure of the parameter space of the
+Henon map</b></font>
+<br><a href="http://www.if.ufrgs.br/~jgallas/"><i>Jason A.C. Gallas</i></a>
+</center>
+
+<p>The two-parameter diffeomorphism of Henon is
+<br>&nbsp; &nbsp; <i>x' = -x<sup>2</sup> + by + a
+<br>&nbsp; &nbsp; y' = x</i>.
+<br>The parameter space of the Henon map is organized in a very regular way.
+Complicated pleopodic shrimplike structures are shown below.
+Every shrimp consists of a main body of periodicity <i>k</i> plus an
+infinite succession of adjacent domains having periods <i>k 2<sup>n</sup></i>,
+i.e., following a period-doubling route to chaos from the main body <i>k</i>.
+Most of shrimps consist of four main legs made of infinite number of
+continuous and smouth segments resulting from intersections with legs
+from other shrimps.
+
+</p><div id="c1"><canvas width="960" height="576"></canvas><div>inf</div></div>
+<script type="text/javascript">
+  new PDirect({divId:"c1", scX:.5, scY:.3, formula:"HenonJ",
+    Xmid:1.803, Ymid:-.0247, DX:.06,
+    par1:1, par2:0, maxIt:1000, maxCol:15, maxZ2:16,
+    label:[["8'",1.8024,-.0227],["11",1.824,-.0166],
+     ["9",1.82496,-.03466],["10",1.7916,-.0161],["10",1.8152,-.0283],
+     ["11",1.7792,-.0356],["11",1.8185,-.0365]]})
+</script>
+Click mouse in window to find period <i>p</i> of the point.
+Click mouse + <i>&lt;Alt&gt;</i>(<i>&lt;Ctrl&gt;</i>) to Zoom In(Out) 2 times.
+Hold <i>&lt;Shift&gt;</i> to modify Zoom In/Out x4
+
+<p>A striking regularity is that essentially all isoperiodic shrimps appear
+aligned along a very particular direction <i>&#945;</i> defined by the (red)
+line <i>b = - 0.583a + 1.025</i> (see Fig.1 at the bottom).
+A portion of the line you see above.
+This pictures is a magnified view of a domain around the <i>8'</i>-shrimp
+in the second applet. The dense "foliation" of roughly parallel lines seen to
+the left and to the right of the <i>8'</i>-shrimp in the second applet
+originated from shrimps located almost exclusively along <i>&#945;</i>.
+There are also a secondary <i>&#946;</i> direction "perpendicular" to
+all legs going down and a further direction, defined by thouse legs
+going to the right.
+
+</p><div id="c2"><canvas width="1344" height="768"></canvas><div>n=9</div></div>
+<script type="text/javascript">
+  new PDirect({divId:"c2", scX:.7, scY:.4, formula:"HenonJ",
+    Xmid:1.4, Ymid:.15, DX:1.1,
+    par1:1, par2:0, maxIt:500, maxCol:15, maxZ2:16,
+    label:[["A",1.4, .15],["B",1.1886, .263],["E",1.64, .04],
+      ["1",.92, -.19],["p=2",1, -.013],["4",1.09, .15],
+      ["8",1.12, .2],["3",1.805, -.015]]})
+</script>
+<img width="80%" height="auto" title="Via Caotica" src="./Structure of the parameter space of the Henon map_files/gallas.gif">
+
+<br>From the picture one recognizes that most of the dynamics known for unimodal
+maps (exemplified here for the quadratic map along <i>b = 0</i>) corresponds
+to "traversing the foliation of legs" coming down from shrimps located in the
+domain above. The apparently random way with which periodic windows appear
+embadded in the chaotic domain along <i>b = 0</i> is in fact a consequence
+of the ordering of shrimps along <i>a</i>.
+
+<p><i>A remark</i> Due to slow convergence near the period doubling
+bifurcations there are black strips between zones of different periodicities.
+As since shrimps are rather slow the last applet makes only <i>300</i>
+iterations in every pixel.
+
+</p><p>[1] <i>J.A.C.Gallas</i>
+<a href="http://www.if.ufrgs.br/~jgallas/quinq97-93.html">Structure of the
+parameter space of the Henon map</a> Phys.Rev.Lett., <b>70</b>, 2714(1993).
+
+</p><hr><a href="https://www.ibiblio.org/e-notes/Chaos/contents.htm">Contents</a>
+&nbsp; &nbsp; Previous: <a href="https://www.ibiblio.org/e-notes/Chaos/henon_diagr.htm">Bifurcation diagram of the Henon map</a>
+&nbsp; &nbsp; Next: <a href="https://www.ibiblio.org/e-notes/Chaos/strange.htm">Strange attractors</a>
+
+<br><i>updated</i> 16 June 2004
+
+</body></html>
