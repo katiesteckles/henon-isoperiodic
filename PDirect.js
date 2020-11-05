@@ -159,12 +159,10 @@ function PDirect(par) {
     }
     a = Xmid + ((a - width / 2) * DX) / width;
     b = Ymid - ((b - height / 2) * DX) / width;
-    if (ev.ctrlKey) {
-      if (ev.shiftKey) DX *= 4;
-      else DX *= 2;
+    if (ev.shiftKey) {
+      DX *= 2;
     } else if (ev.altKey) {
-      if (ev.shiftKey) DX /= 4;
-      else DX /= 2;
+      DX /= 2;
     } else {
       var t = henonJ(a, b, par1, par2);
       var period = (t <= 0) ? "Period: " + (-t + 1) : "inf";
