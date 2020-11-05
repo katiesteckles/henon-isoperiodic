@@ -170,7 +170,7 @@ function PDirect(par) {
       var aMax = Xmid + ((width / 2) * DX) / width;
       var bMin = Ymid - ((height / 2) * DX) / width;
       var bMax = Ymid + ((height / 2) * DX) / width;
-      txt.innerHTML = `${period} a=${a} b=${b}. Showing values of a between ${aMin} and ${aMax}, and values of b between ${bMin} and ${bMax}`
+      txt.innerHTML = `${period} a=${a.toFixed(6)} b=${b.toFixed(6)}. Showing values of a between ${aMin} and ${aMax}, and values of b between ${bMin} and ${bMax}`
       return;
     }
     Xmid = a;
