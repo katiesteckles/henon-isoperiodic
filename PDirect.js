@@ -113,6 +113,7 @@ function PDirect(par) {
       }
     img.putImageData(imgd, 0, 0);
     ctx.drawImage(cnv, 0, 0);
+
     time = new Date().getTime() - time;
     txt.innerHTML =
       form(Xmid) +
@@ -147,9 +148,23 @@ function PDirect(par) {
         y = (height - sqr) / 2 + (Ymid - square[1]) / StZ;
       ctx.strokeRect(x, y, sqr, sqr);
     }
+
+    // drawLine()
   }
   function form(x) {
     return Math.round(x * 100000) / 100000;
+  }
+
+  function drawLine() {
+    //0.9 - 1.4 Xmid + ((a - width / 2) * DX) / width;
+    var xStart = Xmid + ((0.91 - width / 2) * DX) / width;
+    var xEnd = Xmid + ((1.41 - width / 2) * DX) / width;
+    var lineYStart = height / 2 + (Ymid - 0.3035) / width;
+    ctx.beginPath();
+    ctx.lineWidth = 10;
+    ctx.moveTo(xStart, lineYStart);
+    ctx.lineTo(xEnd, lineYStart);
+    ctx.stroke();
   }
 
   function ev_mouseup(ev) {
