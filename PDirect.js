@@ -1,6 +1,5 @@
 function PDirect(par) {
-  var formula = par.formula,
-    Xmid = par.Xmid,
+  var Xmid = par.Xmid,
     Ymid = par.Ymid,
     DX = par.DX,
     par1 = par.par1,
@@ -10,7 +9,6 @@ function PDirect(par) {
     max = par.maxZ2,
     label = par.label,
     square = par.square;
-  var func = [];
   var rTouch,
     xOffs,
     yOffs,
@@ -56,6 +54,7 @@ function PDirect(par) {
 
   var div = document.getElementById(par.divId);
   var canvas = document.createElement("canvas");
+  canvas.id = 'canvas'
   canvas.addEventListener("mouseup", ev_mouseup, false);
   canvas.addEventListener("touchstart", startTouch, false);
   canvas.addEventListener("touchmove", continueTouch, false);
@@ -71,6 +70,7 @@ function PDirect(par) {
   setFontHeight();
 
   var cnv = document.createElement("canvas");
+  cnv.id = 'canvas-cnv'
   cnv.width = width;
   cnv.height = height;
   var img = cnv.getContext("2d");
@@ -107,7 +107,7 @@ function PDirect(par) {
       pix = 0;
     for (var iy = 0, Y = Ymid + (Step * height) / 2; iy < height; iy++, Y -= Step)
       for (var ix = 0, X = Xmid - (Step * width) / 2; ix < width; ix++, X += Step) {
-        var t = func[formula](X, Y, par1, par2);
+        var t = henonJ(X, Y, par1, par2);
         if (t < 0) t = -t % maxCol;
         img32[pix++] = cm[t];
       }
@@ -166,7 +166,6 @@ function PDirect(par) {
       if (ev.shiftKey) DX /= 4;
       else DX /= 2;
     } else {
-      // var t = func[formula](a, b, par1, par2);
       var t = henonJ(a, b, par1, par2);
       var text = (t <= 0) ? "n=" + (-t + 1) : "inf";
       txt.innerHTML = `${text} a=${a} b=${b}`
@@ -178,7 +177,7 @@ function PDirect(par) {
   }
   function startTouch(evt) {
     var evList = evt.touches;
-    if (evList.length == 2) {
+    if (evList.length === 2) {
       Xnew = Xmid;
       Ynew = Ymid;
       scale = 1;
